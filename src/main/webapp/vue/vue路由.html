@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <a href="#/hello">点我hello</a>
+        <a href="#/world">点我world</a>
+        <router-link to="/home">主页</router-link>
+    </div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    var hello={
+        template:"<div><h3>hello组件</h3></div>",
+        data(){
+            return {}
+        }
+    };
+    var home={
+        template:"<div><h3>这是主页，欢迎来到我的个人主页</h3></div>",
+        data(){
+            return {}
+        }
+    };
+    var world={
+        template:"<div><h3>world组件</h3></div>",
+        data(){
+            return {}
+        }
+    };
+
+    var router = new VueRouter({
+        routes:[
+            {path:"/home",component:home},
+            {path:"/hello",component:hello},
+            {path:"/",redirect:'home'},
+            {path:"/world",component:world}
+        ]
+    });
+    var app = new Vue({
+        el:"#app",
+        data:{
+            msg:23
+        },
+        methods:{
+            changeMsg(){
+                this.msg=33
+            }
+        },
+        router:router,
+    });
+
+</script>
